@@ -65,7 +65,7 @@ class Footer extends StatelessWidget {
                 children: [
                   _buildContactInfo(
                     Icons.phone,
-                    "(44) 9 9999-9999",
+                    "(44) 9 XXXX-XXXX",
                     Colors.green,
                   ),
                   _buildContactInfo(
@@ -79,7 +79,7 @@ class Footer extends StatelessWidget {
                 children: [
                   _buildContactInfo(
                     Icons.phone,
-                    "(44) 9 9999-9999",
+                    "(44) 9 XXXX-XXXX",
                     Colors.green,
                   ),
                   const SizedBox(height: 12),
