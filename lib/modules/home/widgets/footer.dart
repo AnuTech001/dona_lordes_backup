@@ -7,7 +7,12 @@ class Footer extends StatelessWidget {
 
   const Footer({super.key, this.isLargeScreen = false});
 
-  Widget _buildContactInfo(IconData icon, String text, Color color) {
+  Widget _buildContactInfo(
+    IconData icon,
+    String text, {
+    required Color color,
+    TextAlign textAlign = TextAlign.start,
+  }) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -15,6 +20,7 @@ class Footer extends StatelessWidget {
         const SizedBox(width: 8),
         Text(
           text,
+          textAlign: textAlign,
           style: TextStyle(
             color: Colors.green[900],
             fontWeight: FontWeight.bold,
@@ -65,13 +71,14 @@ class Footer extends StatelessWidget {
                 children: [
                   _buildContactInfo(
                     Icons.phone,
-                    "(44) 9 XXXX-XXXX",
-                    Colors.green,
+                    "Faça o seu pedido via WhatsApp\n(44) 9 XXXX-XXXX",
+                    color: Colors.green,
+                    textAlign: TextAlign.center,
                   ),
                   _buildContactInfo(
                     Icons.email,
                     "armazemdositio@hotmail.com.br",
-                    Colors.blue,
+                    color: Colors.blue,
                   ),
                 ],
               )
@@ -79,14 +86,14 @@ class Footer extends StatelessWidget {
                 children: [
                   _buildContactInfo(
                     Icons.phone,
-                    "(44) 9 XXXX-XXXX",
-                    Colors.green,
+                    "Faça o seu pedido via WhatsApp\n(44) 9 XXXX-XXXX",
+                    color: Colors.green,
                   ),
                   const SizedBox(height: 12),
                   _buildContactInfo(
                     Icons.email,
                     "armazemdositio@hotmail.com.br",
-                    Colors.blue,
+                    color: Colors.blue,
                   ),
                 ],
               ),
