@@ -1,27 +1,43 @@
 import 'package:flutter/material.dart';
-// ignore: unused_import
-import 'action_button.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Footer extends StatelessWidget {
   final bool isLargeScreen;
 
   const Footer({super.key, this.isLargeScreen = false});
 
-  Widget _buildContactInfo(IconData icon, String text, Color color) {
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(icon, color: color, size: 24),
-        const SizedBox(width: 8),
-        Text(
-          text,
-          style: TextStyle(
-            color: Colors.green[900],
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
+  Future<void> _launchUrl(String url) async {
+    if (url.isEmpty) return; // Não faz nada se a URL estiver vazia
+    final Uri uri = Uri.parse(url);
+    if (!await launchUrl(uri)) {
+      throw Exception('Não foi possível acessar: $url');
+    }
+  }
+
+  Widget _buildContactInfo(
+    IconData icon,
+    String text,
+    Color color,
+    String url,
+  ) {
+    return GestureDetector(
+      onTap: () => _launchUrl(url),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          FaIcon(icon, color: color, size: 24),
+          const SizedBox(width: 8),
+          Text(
+            text,
+            style: TextStyle(
+              color: Colors.green[900],
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
@@ -50,7 +66,8 @@ class Footer extends StatelessWidget {
           const SizedBox(height: 16),
           Text(
             "Armazém do Sítio - Qualidade Garantida\n"
-            "Av. Rio Branco, 456, Centro, Loanda - PR",
+            "Av. Rio Branco, 456, Centro, Loanda - PR\n\n"
+            "Contate-nos por: ",
             textAlign: TextAlign.center,
             style: TextStyle(
               fontSize: isLargeScreen ? 18 : 16,
@@ -64,29 +81,59 @@ class Footer extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   _buildContactInfo(
-                    Icons.phone,
-                    "(44) 9 9999-9999",
+                    FontAwesomeIcons.whatsapp,
+                    "(41) 9 8408-2151",
                     Colors.green,
+                    "tel:+5541984082151",
                   ),
                   _buildContactInfo(
                     Icons.email,
-                    "armazemdositio@hotmail.com.br",
-                    Colors.blue,
+                    "anubirdoteknologio@gmail.com",
+                    Colors.red,
+                    "mailto:anubirdoteknologio@gmail.com",
+                  ),
+                  _buildContactInfo(
+                    FontAwesomeIcons.facebook,
+                    "Dona Lordes Oficial",
+                    Colors.blue[800]!, // Cor tradicional do Facebook
+                    "", // URL vazia = não clicável
+                  ),
+                  _buildContactInfo(
+                    FontAwesomeIcons.instagram,
+                    "@dona_lordes_oficial",
+                    Colors.pink, // Cor do Instagram
+                    "", // URL vazia = não clicável
                   ),
                 ],
               )
               : Column(
                 children: [
                   _buildContactInfo(
-                    Icons.phone,
-                    "(44) 9 9999-9999",
+                    FontAwesomeIcons.whatsapp,
+                    "(41) 9 8408-2151",
                     Colors.green,
+                    "tel:+5541984082151",
                   ),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 8),
                   _buildContactInfo(
                     Icons.email,
-                    "armazemdositio@hotmail.com.br",
-                    Colors.blue,
+                    "anubirdoteknologio@gmail.com",
+                    Colors.red,
+                    "mailto:anubirdoteknologio@gmail.com",
+                  ),
+                  const SizedBox(height: 8),
+                  _buildContactInfo(
+                    FontAwesomeIcons.facebook,
+                    "Dona Lordes Oficial",
+                    Colors.blue[800]!,
+                    "",
+                  ),
+                  const SizedBox(height: 8),
+                  _buildContactInfo(
+                    FontAwesomeIcons.instagram,
+                    "@dona_lordes_oficial",
+                    Colors.pink,
+                    "",
                   ),
                 ],
               ),
