@@ -95,14 +95,14 @@ class Footer extends StatelessWidget {
                   _buildContactInfo(
                     FontAwesomeIcons.facebook,
                     "Dona Lordes Oficial",
-                    Colors.blue[800]!, // Cor tradicional do Facebook
-                    "", // URL vazia = não clicável
+                    Colors.blue[800]!,
+                    "https://facebook.com/donalordesoficial",
                   ),
                   _buildContactInfo(
                     FontAwesomeIcons.instagram,
                     "@dona_lordes_oficial",
-                    Colors.pink, // Cor do Instagram
-                    "", // URL vazia = não clicável
+                    Colors.pink,
+                    "https://instagram.com/dona_lordes_oficial",
                   ),
                 ],
               )
@@ -126,14 +126,14 @@ class Footer extends StatelessWidget {
                     FontAwesomeIcons.facebook,
                     "Dona Lordes Oficial",
                     Colors.blue[800]!,
-                    "",
+                    "https://facebook.com/donalordesoficial",
                   ),
                   const SizedBox(height: 8),
                   _buildContactInfo(
                     FontAwesomeIcons.instagram,
                     "@dona_lordes_oficial",
                     Colors.pink,
-                    "",
+                    "https://instagram.com/dona_lordes_oficial",
                   ),
                 ],
               ),
