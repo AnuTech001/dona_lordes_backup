@@ -1,10 +1,73 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'action_button.dart';
 
 class Content extends StatelessWidget {
   final bool isLargeScreen;
 
   const Content({super.key, this.isLargeScreen = false});
+
+  // Função genérica para abrir URLs
+  Future<void> _launchUrl(
+    BuildContext context,
+    String url,
+    String successMessage,
+    String errorMessage,
+  ) async {
+    try {
+      final uri = Uri.parse(url);
+      if (await canLaunchUrl(uri)) {
+        await launchUrl(uri);
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(successMessage),
+              duration: const Duration(seconds: 2),
+            ),
+          );
+        }
+      } else {
+        throw errorMessage;
+      }
+    } catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(e.toString()),
+            duration: const Duration(seconds: 2),
+          ),
+        );
+      }
+    }
+  }
+
+  // Ações específicas para cada botão
+  Future<void> _openCatalog(BuildContext context) async {
+    await _launchUrl(
+      context,
+      'https://armazemdositio.com.br/catalogo',
+      'Catálogo aberto com sucesso!',
+      'Não foi possível abrir o catálogo',
+    );
+  }
+
+  Future<void> _openFeedback(BuildContext context) async {
+    await _launchUrl(
+      context,
+      'https://armazemdositio.com.br/opiniao',
+      'Agradecemos sua opinião!',
+      'Não foi possível abrir o formulário',
+    );
+  }
+
+  Future<void> _makePhoneCall(BuildContext context) async {
+    await _launchUrl(
+      context,
+      'tel:+5541984082151',
+      'Iniciando chamada...',
+      'Não foi possível fazer a chamada',
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -65,10 +128,20 @@ class Content extends StatelessWidget {
           isLargeScreen
               ? Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: ActionButton.buildActionButtons(isLargeScreen: true),
+                children: ActionButton.buildActionButtons(
+                  isLargeScreen: true,
+                  onCatalogPressed: () => _openCatalog(context),
+                  onFeedbackPressed: () => _openFeedback(context),
+                  onPhonePressed: () => _makePhoneCall(context),
+                ),
               )
               : Column(
-                children: ActionButton.buildActionButtons(isLargeScreen: false),
+                children: ActionButton.buildActionButtons(
+                  isLargeScreen: false,
+                  onCatalogPressed: () => _openCatalog(context),
+                  onFeedbackPressed: () => _openFeedback(context),
+                  onPhonePressed: () => _makePhoneCall(context),
+                ),
               ),
         ],
       ),

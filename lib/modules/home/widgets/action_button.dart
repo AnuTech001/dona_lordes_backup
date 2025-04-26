@@ -5,6 +5,7 @@ class ActionButton extends StatelessWidget {
   final String label;
   final Color color;
   final bool isLargeScreen;
+  final VoidCallback? onPressed;
 
   const ActionButton({
     super.key,
@@ -12,15 +13,22 @@ class ActionButton extends StatelessWidget {
     required this.label,
     required this.color,
     required this.isLargeScreen,
+    this.onPressed,
   });
 
-  static List<Widget> buildActionButtons({required bool isLargeScreen}) {
+  static List<Widget> buildActionButtons({
+    required bool isLargeScreen,
+    required VoidCallback onCatalogPressed,
+    required VoidCallback onFeedbackPressed,
+    required VoidCallback onPhonePressed,
+  }) {
     return [
       ActionButton(
         icon: Icons.menu_book_outlined,
         label: "Catálogo",
         color: Colors.brown[900]!,
         isLargeScreen: isLargeScreen,
+        onPressed: onCatalogPressed,
       ),
       SizedBox(height: isLargeScreen ? 0 : 16),
       ActionButton(
@@ -28,13 +36,15 @@ class ActionButton extends StatelessWidget {
         label: "Opinião",
         color: Colors.green[900]!,
         isLargeScreen: isLargeScreen,
+        onPressed: onFeedbackPressed,
       ),
       SizedBox(height: isLargeScreen ? 0 : 16),
       ActionButton(
-        icon: Icons.assignment_ind_outlined,
-        label: "Trabalhe conosco",
+        icon: Icons.phone_outlined,
+        label: "Fale conosco",
         color: Colors.blue[900]!,
         isLargeScreen: isLargeScreen,
+        onPressed: onPhonePressed,
       ),
     ];
   }
@@ -56,7 +66,7 @@ class ActionButton extends StatelessWidget {
           vertical: isLargeScreen ? 16 : 12,
         ),
       ),
-      onPressed: () {},
+      onPressed: onPressed,
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
