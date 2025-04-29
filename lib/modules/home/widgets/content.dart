@@ -60,12 +60,19 @@ class Content extends StatelessWidget {
     );
   }
 
-  Future<void> _makePhoneCall(BuildContext context) async {
+  Future<void> _openWhatsApp(BuildContext context) async {
+    const phoneNumber = '+5541984082151';
+    const message = 'Olá!'; // Mensagem opcional que pode ser pré-definida
+
+    final url =
+        'https://wa.me/$phoneNumber/?text=${Uri.encodeComponent(message)}';
+    // ou alternativa: 'whatsapp://send?phone=$phoneNumber&text=${Uri.encodeComponent(message)}';
+
     await _launchUrl(
       context,
-      'tel:+5541984082151',
-      'Iniciando chamada...',
-      'Não foi possível fazer a chamada',
+      url,
+      'Abrindo WhatsApp...',
+      'Não foi possível abrir o WhatsApp',
     );
   }
 
@@ -132,7 +139,7 @@ class Content extends StatelessWidget {
                   isLargeScreen: true,
                   onCatalogPressed: () => _openCatalog(context),
                   onFeedbackPressed: () => _openFeedback(context),
-                  onPhonePressed: () => _makePhoneCall(context),
+                  onPhonePressed: () => _openWhatsApp(context),
                 ),
               )
               : Column(
@@ -140,7 +147,7 @@ class Content extends StatelessWidget {
                   isLargeScreen: false,
                   onCatalogPressed: () => _openCatalog(context),
                   onFeedbackPressed: () => _openFeedback(context),
-                  onPhonePressed: () => _makePhoneCall(context),
+                  onPhonePressed: () => _openWhatsApp(context),
                 ),
               ),
         ],
