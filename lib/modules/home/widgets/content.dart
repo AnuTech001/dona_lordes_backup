@@ -61,7 +61,7 @@ class Content extends StatelessWidget {
   }
 
   Future<void> _openWhatsApp(BuildContext context) async {
-    const phoneNumber = '+5541984082151';
+    const phoneNumber = '+5541996146380';
     const message = 'Olá!'; // Mensagem opcional que pode ser pré-definida
 
     final url =
