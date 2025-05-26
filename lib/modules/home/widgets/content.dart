@@ -89,7 +89,7 @@ class Content extends StatelessWidget {
       child: Column(
         children: [
           Text(
-            "Você encontrará os mais deliciosos produtos artesanais da região Noroeste do Paraná. "
+            "Aqui você encontrará os mais deliciosos produtos artesanais da região Noroeste do Paraná. "
             "Aproveite também nossa seleção de frutas e verduras, com o menor preço e a melhor qualidade da cidade de Loanda!",
             textAlign: TextAlign.center,
             style: TextStyle(

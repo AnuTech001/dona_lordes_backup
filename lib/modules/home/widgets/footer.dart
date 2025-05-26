@@ -82,9 +82,9 @@ class Footer extends StatelessWidget {
                 children: [
                   _buildContactInfo(
                     FontAwesomeIcons.whatsapp,
-                    "(41) 9 8408-2151",
+                    "(41) 9 9614-6380",
                     Colors.green,
-                    "tel:+5541984082151",
+                    "tel:+5541996146380",
                   ),
                   _buildContactInfo(
                     Icons.email,
@@ -110,9 +110,9 @@ class Footer extends StatelessWidget {
                 children: [
                   _buildContactInfo(
                     FontAwesomeIcons.whatsapp,
-                    "(41) 9 8408-2151",
+                    "(41) 9 9614-6380",
                     Colors.green,
-                    "tel:+5541984082151",
+                    "tel:+5541996146380",
                   ),
                   const SizedBox(height: 8),
                   _buildContactInfo(
