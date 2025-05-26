@@ -34,7 +34,7 @@ class ActionButton extends StatelessWidget {
       ActionButton(
         icon: Icons.question_answer_outlined,
         label: "Opinião",
-        color: Colors.red[900]!,
+        color: Colors.green[900]!,
         isLargeScreen: isLargeScreen,
         onPressed: onFeedbackPressed,
       ),
